@@ -77,8 +77,7 @@ module.exports = function (Categories) {
 						Categories.parseDescription(category.cid, category.description, next);
 					},
 					async.apply(db.sortedSetsAdd, ['categories:cid', 'cid:' + parentCid + ':children'], category.order, category.cid),
-					async.apply(privileges.categories.give, defaultPrivileges, category.cid, ['administrators', 'registered-users']),
-					async.apply(privileges.categories.give, ['find', 'read', 'topics:read'], category.cid, ['guests', 'spiders']),
+					async.apply(privileges.categories.give, defaultPrivileges, category.cid, ['administrators']),
 				], next);
 			},
 			function (results, next) {
